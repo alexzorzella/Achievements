@@ -10,6 +10,24 @@ public class AchievementManager : MonoBehaviour
     public int integer;
     public float floating_point;
 
+    public bool AchievementUnlocked(string achievementName)
+    {
+        bool result = false;
+
+        if (achievements == null)
+            return false;
+
+        Achievement[] achievementsArray = achievements.ToArray();
+        Achievement a = Array.Find(achievementsArray, ach => achievementName == ach.title);
+
+        if (a == null)
+            return false;
+
+        result = a.achieved;
+
+        return result;
+    }
+
     private void Start()
     {
         InitializeAchievements();
